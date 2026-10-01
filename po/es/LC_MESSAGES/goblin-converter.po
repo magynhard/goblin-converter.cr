@@ -1,0 +1,129 @@
+# Spanish translations for PACKAGE package.
+# Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-02-02 23:59+0100\n"
+"PO-Revision-Date: 2025-01-09 21:31+0100\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/dialogs/about_dialog.rb:5 src/windows/main_window.rb:67
+msgid "A simple document converter"
+msgstr "Un convertidor de documentos simple"
+
+#: src/windows/main_window.rb:89
+msgid "Settings"
+msgstr "Configuraciones"
+
+#: src/windows/main_window.rb:90
+msgid "About"
+msgstr "Acerca de"
+
+#: src/windows/main/conversion_mode_group.rb:5
+msgid "Monochrome"
+msgstr "Monocromo"
+
+#: src/windows/main/conversion_mode_group.rb:6
+msgid "Grayscale"
+msgstr "Escala de grises"
+
+#: src/windows/main/conversion_mode_group.rb:7
+#, fuzzy
+msgid "Grayscale quality"
+msgstr "Escala de grises"
+
+#: src/windows/main/conversion_mode_group.rb:8
+msgid "Color"
+msgstr "Color"
+
+#: src/windows/main/conversion_mode_group.rb:14
+#, fuzzy
+msgid "Conversion"
+msgstr "Conversión"
+
+#: src/windows/main/conversion_mode_group.rb:26
+msgid "Mode"
+msgstr "Modo"
+
+#: src/windows/main/conversion_mode_group.rb:46
+msgid "Resolution"
+msgstr "Resolución"
+
+#: src/windows/main/conversion_mode_group.rb:57
+msgid "Density of the resolution in dpi for your output"
+msgstr "Densidad de la resolución en dpi para su salida"
+
+#: src/windows/main/conversion_mode_group.rb:96
+msgid "Quality"
+msgstr "Qualidad"
+
+#: src/windows/main/conversion_mode_group.rb:107
+msgid "Lossy compression quality"
+msgstr "Calidad de compresión con pérdida"
+
+#: src/windows/main/conversion_mode_group.rb:150
+msgid "Threshold"
+msgstr "Umbral"
+
+#: src/windows/main/conversion_mode_group.rb:161
+msgid ""
+"Decrease for more black.\n"
+"66 is a good fit for colored docs.\n"
+"For grayscaled documents 50-60 is\n"
+"often a good choice."
+msgstr ""
+"Disminuir para más negro.\n"
+"66 es una buena opción para documentos en color.\n"
+"Para documentos en escala de grises, 50-60 es\n"
+"a menudo una buena elección."
+
+
+#: src/windows/main/convert_button_group.rb:13
+msgid "Convert"
+msgstr "Convertir"
+
+#: src/windows/main/convert_button_group.rb:41
+msgid "Converting..."
+msgstr "Convirtiendo..."
+
+#: src/windows/main/convert_button_group.rb:59
+msgid "Conversion Complete!"
+msgstr "¡Conversión completa!"
+
+#: src/windows/main/convert_button_group.rb:61
+msgid "An error occurred while conversion!"
+msgstr ""
+
+#: src/windows/main/convert_button_group.rb:64
+msgid "Please select both source and output files."
+msgstr "Por favor, seleccione tanto el archivo de origen como el de salida."
+
+#: src/windows/main/source_file_group.rb:6
+#, fuzzy
+msgid "Source"
+msgstr "Archivo de origen"
+
+#: src/windows/main/source_file_group.rb:22
+#: src/windows/main/source_file_group.rb:35
+msgid "Select Source File"
+msgstr "Seleccionar archivo de origen"
+
+#: src/windows/main/target_file_group.rb:6
+msgid "Target"
+msgstr "Archivo de destino"
+
+#: src/windows/main/target_file_group.rb:22
+#: src/windows/main/target_file_group.rb:35
+#, fuzzy
+msgid "Select target file"
+msgstr "Seleccionar archivo de origen"

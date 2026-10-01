@@ -1,0 +1,8 @@
+src/modules/prerequisites.cr
+src/modules/views/main_window.cr
+src/modules/views/conversion_mode_group.cr
+src/modules/views/source_file_group.cr
+src/modules/views/target_file_group.cr
+src/modules/views/convert_button_group.cr
+src/modules/functions/dialogs.cr
+src/modules/functions/open_file_dialog.cr

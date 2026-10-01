@@ -1,0 +1,30 @@
+# Crystal
+/lib/
+/bin/
+/.shards/
+*.dwarf
+
+# Shards
+shard.lock
+
+# Build artifacts
+*.o
+*.so
+*.dylib
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Compiled GResource
+*.gresource
+
+# Locale compiled files
+*.mo

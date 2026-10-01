@@ -1,0 +1,19 @@
+name: goblin-converter
+version: 0.0.1
+license: MIT
+
+authors:
+  - "Matthäus J. N. Beyrle <goblin-converter.github.com@mail.magynhard.de>"
+
+description: |
+  A simple document converter using GTK4/Adwaita and ImageMagick
+
+repository: https://github.com/magynhard/goblin-converter.cr
+
+dependencies:
+  libadwaita:
+    github: hugopl/libadwaita.cr
+  gettext:
+    git: https://codeberg.org/GeopJr/gettext.cr.git
+
+crystal: ">= 1.10.0"

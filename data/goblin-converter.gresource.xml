@@ -1,0 +1,7 @@
+<gresources>
+  <gresource prefix="/de/magynhard/GoblinConverter">
+    <file compressed="true" alias="de.magynhard.GoblinConverter.metainfo.xml">data/de.magynhard.GoblinConverter.metainfo.xml</file>
+    <file compressed="true" alias="app-icon.svg">data/icons/app-icon.svg</file>
+    <file>data/icons/app-icon-512.png</file>
+  </gresource>
+</gresources>
