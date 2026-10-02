@@ -67,7 +67,8 @@ module GoblinApp
     def initialize(@app)
       @window = Gtk::ApplicationWindow.new(@app)
       @window.title = "Goblin Converter"
-      @window.set_default_size(550, 600)
+      @window.resizable = false
+      @window.set_default_size(700, 600)
 
       vbox = Gtk::Box.new(:vertical, 10)
       vbox.margin_top = 20
