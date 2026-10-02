@@ -29,20 +29,19 @@ module GoblinApp
       # Drag & Drop support
       drop_target = Gtk::DropTarget.new(Gdk::FileList.g_type, Gdk::DragAction::Copy)
       drop_target.drop_signal.connect do |value, x, y|
-        if value.is_a?(Gdk::FileList)
-          files = value.files
-          if files.size > 0
-            path = files.first.path.to_s
-            @form_data = @form_data.copy_with(source_path: path)
-            @source_file_row.not_nil!.subtitle = path
-            GoblinApp.log("Source changed (drag & drop): #{path}")
-            auto_target = path.gsub(/\.([a-zA-Z]{3,4})$/, "_converted.\\1")
-            @form_data = @form_data.copy_with(target_path: auto_target)
-            @output_entry_row.not_nil!.subtitle = auto_target
-            GoblinApp.log("Target auto-set: #{auto_target}")
-          end
+        if path = dropped_file_path(value)
+          @form_data = @form_data.copy_with(source_path: path)
+          @source_file_row.not_nil!.subtitle = path
+          GoblinApp.log("Source changed (drag & drop): #{path}")
+          auto_target = path.gsub(/\.([a-zA-Z]{3,4})$/, "_converted.\\1")
+          @form_data = @form_data.copy_with(target_path: auto_target)
+          @output_entry_row.not_nil!.subtitle = auto_target
+          GoblinApp.log("Target auto-set: #{auto_target}")
+          true
+        else
+          GoblinApp.log("Drop ignored: no local file")
+          false
         end
-        true
       end
 
       @source_file_row.not_nil!.add_controller(drop_target)
@@ -61,6 +60,23 @@ module GoblinApp
         @output_entry_row.not_nil!.subtitle = auto_target
         GoblinApp.log("Target auto-set: #{auto_target}")
       end
+    end
+
+    # Extracts the first local file path from a drop value. The drop
+    # signal hands over a GObject::Value (never a Gdk::FileList
+    # directly), so the boxed list must be unwrapped first. Returns nil
+    # for unexpected types, empty lists, or non-local files.
+    private def dropped_file_path(value : GObject::Value) : String?
+      return nil unless value.g_type == Gdk::FileList.g_type
+      boxed = LibGObject.g_value_get_boxed(value.to_unsafe)
+      return nil if boxed.null?
+      file_list = Gdk::FileList.new(boxed, GICrystal::Transfer::None)
+      file_list.files.each do |file|
+        if local_path = file.path
+          return local_path.to_s
+        end
+      end
+      nil
     end
   end
 end

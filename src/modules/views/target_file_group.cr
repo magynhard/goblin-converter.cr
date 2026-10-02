@@ -40,16 +40,15 @@ module GoblinApp
       # Drag & Drop support
       drop_target = Gtk::DropTarget.new(Gdk::FileList.g_type, Gdk::DragAction::Copy)
       drop_target.drop_signal.connect do |value, x, y|
-        if value.is_a?(Gdk::FileList)
-          files = value.files
-          if files.size > 0
-            path = files.first.path.to_s
-            @form_data = @form_data.copy_with(target_path: path)
-            @output_entry_row.not_nil!.subtitle = path
-            GoblinApp.log("Target changed (drag & drop): #{path}")
-          end
+        if path = dropped_file_path(value)
+          @form_data = @form_data.copy_with(target_path: path)
+          @output_entry_row.not_nil!.subtitle = path
+          GoblinApp.log("Target changed (drag & drop): #{path}")
+          true
+        else
+          GoblinApp.log("Drop ignored: no local file")
+          false
         end
-        true
       end
 
       @output_entry_row.not_nil!.add_controller(drop_target)
