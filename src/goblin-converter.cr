@@ -5,6 +5,7 @@ require "./modules/prerequisites"
 require "./modules/functions/dialogs"
 require "./modules/functions/open_file_dialog"
 require "./modules/functions/file_launcher_patch"
+require "./modules/functions/conversion_logic"
 require "./modules/views/main_window"
 
 module GoblinApp

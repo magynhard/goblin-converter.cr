@@ -55,27 +55,8 @@ module GoblinApp
     # never blocks thanks to WNOHANG.
     private def start_conversion(source_file : String, output_file : String)
       options = @form_data.options
-      mode = options.mode
-      density = options.resolution
-      threshold = options.threshold
-      quality = options.quality
-
-      mode_args = case mode
-                  when "monochrome"
-                    ["-threshold", "#{threshold}%", "-monochrome", "-compress", "Fax"]
-                  when "grayscale"
-                    ["-colorspace", "Gray", "-compress", "Zip"]
-                  when "grayscale_quality"
-                    ["-colorspace", "Gray", "-compress", "JPEG", "-quality", quality.to_s]
-                  when "color"
-                    ["-compress", "JPEG", "-quality", quality.to_s]
-                  else
-                    ["-threshold", "#{threshold}%", "-monochrome", "-compress", "Fax"]
-                  end
-
-      strip_args = options.strip_metadata ? ["-strip"] : [] of String
-      argv = ["magick", "-density", density.to_s, source_file] + mode_args + strip_args + [output_file]
-      GoblinApp.log("Running: #{argv.map { |arg| Process.quote(arg) }.join(" ")}")
+      argv = GoblinApp.magick_args(source_file, output_file, options)
+      GoblinApp.log("Running: #{GoblinApp.magick_command(source_file, output_file, options)}")
 
       progress = Dialogs.show_progress_dialog(@window)
 
@@ -117,7 +98,7 @@ module GoblinApp
           true
         elsif ret == pid
           # We reaped the child ourselves (beat GLib's child watch).
-          finish_conversion(exited_ok?(status), "exit #{exit_code(status)}",
+          finish_conversion(GoblinApp.exited_ok?(status), "exit #{GoblinApp.exit_code(status)}",
             source_file, output_file, progress, out_log, err_log)
           false
         elsif Errno.value == Errno::EINTR
@@ -126,7 +107,7 @@ module GoblinApp
         else
           # ECHILD: GLib's child watch already reaped the process, ask it.
           ok = proc.successful
-          info = ok ? "exit #{exit_code(proc.exit_status)}" : "raw status #{proc.exit_status}"
+          info = ok ? "exit #{GoblinApp.exit_code(proc.exit_status)}" : "raw status #{proc.exit_status}"
           finish_conversion(ok, info, source_file, output_file, progress, out_log, err_log)
           false
         end
@@ -148,15 +129,6 @@ module GoblinApp
         GoblinApp.log("magick stderr:\n#{stderr_text}") unless stderr_text.empty?
         Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("An error occurred while conversion!"), message_type: :error)
       end
-    end
-
-    # WIFEXITED(status) != 0 && WEXITSTATUS(status) == 0 (Linux layout).
-    private def exited_ok?(status : Int32) : Bool
-      (status & 0x7f) == 0 && ((status >> 8) & 0xff) == 0
-    end
-
-    private def exit_code(status : Int32) : Int32
-      (status >> 8) & 0xff
     end
 
     # Reads a tempfile's content, then closes and deletes it.
