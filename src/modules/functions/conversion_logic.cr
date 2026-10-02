@@ -32,13 +32,24 @@ module GoblinApp
     magick_args(source, output, options).map { |arg| Process.quote(arg) }.join(" ")
   end
 
-  # WIFEXITED(status) with WEXITSTATUS(status) == 0 (Linux waitpid layout).
+  # Whether the child exited normally with code 0. Unix waitpid
+  # statuses encode this in bits (Linux layout); on Windows the status
+  # reported by Gio is the plain exit code.
   def self.exited_ok?(status : Int32) : Bool
-    (status & 0x7f) == 0 && ((status >> 8) & 0xff) == 0
+    {% if flag?(:win32) %}
+      status == 0
+    {% else %}
+      (status & 0x7f) == 0 && ((status >> 8) & 0xff) == 0
+    {% end %}
   end
 
-  # WEXITSTATUS(status) (Linux waitpid layout).
+  # Exit code from a waitpid status (Linux layout); on Windows the
+  # status already is the plain exit code.
   def self.exit_code(status : Int32) : Int32
-    (status >> 8) & 0xff
+    {% if flag?(:win32) %}
+      status
+    {% else %}
+      (status >> 8) & 0xff
+    {% end %}
   end
 end

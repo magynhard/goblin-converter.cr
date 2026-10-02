@@ -54,11 +54,20 @@ make uninstall
 ```
 
 # Development
+Target platforms are Linux (primary) and Windows. macOS is not planned.
+
 ## Requirements (development)
 * Crystal 1.20+
 * GTK4
 * ImageMagick 7
 * Ghostscript 10
+
+### Windows (preliminary, to be verified on first Windows build)
+Build must run on a Windows machine (no cross-compile from Linux):
+ MSVC build tools, Crystal for Windows, MSYS2 with `gtk4`,
+ `libadwaita`, `gettext`, `imagemagick` and `ghostscript`, then
+ `shards install` and `make build` / `make run` as usual.
+ `make install` is Unix-only.
 
 ## Install local for development
 ```

@@ -65,12 +65,18 @@ module GoblinApp
 
       proc = begin
         launcher = Gio::SubprocessLauncher.new(Gio::SubprocessFlags::SearchPathFromEnvp)
-        launcher.take_stdout_fd(out_log.fd)
-        launcher.take_stderr_fd(err_log.fd)
-        null_in = File.open(File::NULL, "r")
-        launcher.take_stdin_fd(null_in.fd)
+        {% unless flag?(:win32) %}
+          # File fds are C ints only on Unix; on Windows the child
+          # inherits stdio instead (magick output then goes to console).
+          launcher.take_stdout_fd(out_log.fd)
+          launcher.take_stderr_fd(err_log.fd)
+          null_in = File.open(File::NULL, "r")
+          launcher.take_stdin_fd(null_in.fd)
+        {% end %}
         subprocess = launcher.spawnv(argv)
-        null_in.close
+        {% unless flag?(:win32) %}
+          null_in.close
+        {% end %}
         subprocess
       rescue ex
         GoblinApp.log("Failed to launch magick: #{ex.message}")
@@ -81,37 +87,53 @@ module GoblinApp
         return
       end
 
-      pid = proc.identifier.try(&.to_i?)
-      if pid.nil?
-        GoblinApp.log("Failed to launch magick: could not determine child pid")
-        progress.force_close
-        read_and_cleanup(out_log)
-        read_and_cleanup(err_log)
-        Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("An error occurred while conversion!"), message_type: :error)
-        return
-      end
-
-      GoblinApp.log("magick launched (pid #{pid}), waiting for completion...")
-      GLib.timeout(250.milliseconds) do
-        ret = LibC.waitpid(pid, out status, LibC::WNOHANG)
-        if ret == 0
-          true
-        elsif ret == pid
-          # We reaped the child ourselves (beat GLib's child watch).
-          finish_conversion(GoblinApp.exited_ok?(status), "exit #{GoblinApp.exit_code(status)}",
-            source_file, output_file, progress, out_log, err_log)
-          false
-        elsif Errno.value == Errno::EINTR
-          # Transient interruption, child state unknown: keep polling.
-          true
-        else
-          # ECHILD: GLib's child watch already reaped the process, ask it.
-          ok = proc.successful
-          info = ok ? "exit #{GoblinApp.exit_code(proc.exit_status)}" : "raw status #{proc.exit_status}"
-          finish_conversion(ok, info, source_file, output_file, progress, out_log, err_log)
-          false
+      {% if flag?(:win32) %}
+        # Windows has no waitpid: let GLib reap the child and report via
+        # callback (needs subprocess_patch for the fixed binding).
+        GoblinApp.log("magick launched, waiting for completion...")
+        proc.wait_check_async(nil) do |_source, result|
+          begin
+            proc.wait_check_finish(result)
+            finish_conversion(true, "exit 0",
+              source_file, output_file, progress, out_log, err_log)
+          rescue ex
+            finish_conversion(false, ex.message || "unknown error",
+              source_file, output_file, progress, out_log, err_log)
+          end
         end
-      end
+      {% else %}
+        pid = proc.identifier.try(&.to_i?)
+        if pid.nil?
+          GoblinApp.log("Failed to launch magick: could not determine child pid")
+          progress.force_close
+          read_and_cleanup(out_log)
+          read_and_cleanup(err_log)
+          Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("An error occurred while conversion!"), message_type: :error)
+          return
+        end
+
+        GoblinApp.log("magick launched (pid #{pid}), waiting for completion...")
+        GLib.timeout(250.milliseconds) do
+          ret = LibC.waitpid(pid, out status, LibC::WNOHANG)
+          if ret == 0
+            true
+          elsif ret == pid
+            # We reaped the child ourselves (beat GLib's child watch).
+            finish_conversion(GoblinApp.exited_ok?(status), "exit #{GoblinApp.exit_code(status)}",
+              source_file, output_file, progress, out_log, err_log)
+            false
+          elsif Errno.value == Errno::EINTR
+            # Transient interruption, child state unknown: keep polling.
+            true
+          else
+            # ECHILD: GLib's child watch already reaped the process, ask it.
+            ok = proc.successful
+            info = ok ? "exit #{GoblinApp.exit_code(proc.exit_status)}" : "raw status #{proc.exit_status}"
+            finish_conversion(ok, info, source_file, output_file, progress, out_log, err_log)
+            false
+          end
+        end
+      {% end %}
     end
 
     private def finish_conversion(success : Bool, status_info : String, source_file : String, output_file : String, progress : Adw::AlertDialog, out_log : File, err_log : File) : Nil

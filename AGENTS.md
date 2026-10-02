@@ -2,6 +2,8 @@
 
 Crystal + GTK4/Adwaita document converter. Conversion shells out to ImageMagick `magick` (+ Ghostscript for PDFs).
 
+Target platforms: Linux (primary/dev) and Windows. macOS is not planned.
+
 Repo language is English — keep code, comments, docs, and commit messages in English.
 
 ## Commands
@@ -21,7 +23,8 @@ Repo language is English — keep code, comments, docs, and commit messages in E
 ## Architecture
 - Entry `src/goblin-converter.cr` → `GoblinApp::App < Adw::Application` → `MainWindow` in `src/modules/views/main_window.cr`.
 - `MainWindow` is reopened across `src/modules/views/*.cr` (`class MainWindow`); each `create_*_group(vbox)` builds one UI section. State lives in `ConversionOptions`/`FormData` structs in `main_window.cr`.
-- Convert logic only in `src/modules/views/convert_button_group.cr:start_conversion`: runs `magick` via `Gio::SubprocessLauncher` (argv, no shell) with stdout/stderr redirected to tempfiles, polls completion with raw `waitpid(WNOHANG)` from a `GLib.timeout` (ECHILD means GLib's child watch reaped it → ask `proc.successful`).
+- Convert logic only in `src/modules/views/convert_button_group.cr:start_conversion`: runs `magick` via `Gio::SubprocessLauncher` (argv, no shell) with stdout/stderr redirected to tempfiles, polls completion with raw `waitpid(WNOHANG)` from a `GLib.timeout` (ECHILD means GLib's child watch reaped it → ask `proc.successful`). On Windows (`{% if flag?(:win32) %}`) there is no waitpid and File fds aren't C ints: stdio is inherited and completion comes via patched `wait_check_async` (see `subprocess_patch.cr`); exit-status helpers in `conversion_logic.cr` have trivial win32 branches.
+- Windows notes: no cross-compile from Linux — build must run on a Windows machine; win32 code paths can't be spec'd headless on Linux, verify them via `crystal build --cross-compile --target x86_64-windows-msvc -o /tmp/goblin-win src/goblin-converter.cr` (typecheck + codegen, skips link) plus testing on Windows. `make install` is Unix-only.
 - Drag & drop delivers `GObject::Value`, never `Gdk::FileList`: unwrap via `LibGObject.g_value_get_boxed` + type check (see `dropped_file_path`), return `false` when unhandled.
 - Never use Crystal `Thread`/`spawn`/`Channel` or `Process` with pipe-like redirects (`IO::Memory`, `Redirect::Pipe`) for subprocesses: fibers don't run while GTK blocks the main thread, and `Process` waiting hangs on worker threads (proven via headless harness). `Process.quote` as a pure string helper is fine.
 - Dialogs: `src/modules/functions/dialogs.cr`; file picker: `open_file_dialog.cr`.
