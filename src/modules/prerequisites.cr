@@ -1,11 +1,26 @@
 require "gettext"
 
+{% if flag?(:win32) %}
+  # On Windows (MSVC + gvsbuild) the gettext C functions live in intl.dll,
+  # not in the C runtime: link its import library wherever LibC is used.
+  @[Link("intl")]
+  lib LibC
+  end
+{% end %}
+
 module GoblinApp
   VERSION = {{read_file("./shard.yml").split("version: ")[1].split("\n")[0]}}
 
   # Initialize gettext for i18n
   locale_dir = File.join(File.dirname(__FILE__), "..", "..", "po")
-  Gettext.setlocale(Gettext::LC::ALL, "")
+  {% if flag?(:win32) %}
+    # MSVC numbers locale categories differently than glibc (which the
+    # gettext shard assumes: LC::ALL = 6). On MSVC, LC_ALL = 0; passing 6
+    # triggers the UCRT invalid-parameter handler and aborts the process.
+    LibC.setlocale(0, "")
+  {% else %}
+    Gettext.setlocale(Gettext::LC::ALL, "")
+  {% end %}
   Gettext.bindtextdomain("de.magynhard.GoblinConverter", locale_dir)
   Gettext.textdomain("de.magynhard.GoblinConverter")
 

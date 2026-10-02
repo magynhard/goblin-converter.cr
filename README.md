@@ -57,17 +57,35 @@ make uninstall
 Target platforms are Linux (primary) and Windows. macOS is not planned.
 
 ## Requirements (development)
-* Crystal 1.20+
+* Crystal 1.21+
 * GTK4
 * ImageMagick 7
 * Ghostscript 10
 
-### Windows (preliminary, to be verified on first Windows build)
+### Windows (verified 2026-10-02, MSVC route)
 Build must run on a Windows machine (no cross-compile from Linux):
- MSVC build tools, Crystal for Windows, MSYS2 with `gtk4`,
- `libadwaita`, `gettext`, `imagemagick` and `ghostscript`, then
- `shards install` and `make build` / `make run` as usual.
- `make install` is Unix-only.
+
+1. Install: Crystal for Windows (MSVC, portable zip) + VS2022 Build Tools
+   ("Desktop development with C++", MSVC v143 x64) + Windows 10 SDK.
+   Enable Developer Mode in Windows Settings.
+2. Unzip a wingtk/gvsbuild `GTK4_Gvsbuild_<ver>_x64.zip` to `C:\gtk`
+   (provides GTK4/Adwaita, GObject-Introspection, pkg-config, msgfmt).
+3. Per PowerShell session, load the env (adjust paths if needed):
+   ```
+   . .\scripts\goblin-env.ps1 [-GtkDir C:\gtk] [-CrystalDir ...] [-ImageMagickDir ...] [-GhostscriptDir ...]
+   ```
+4. Then as usual (no `make` needed):
+   ```
+   shards install
+   .\bin\gi-crystal.exe
+   crystal build src/goblin-converter.cr -o bin/goblin-converter.exe
+   crystal spec
+   ```
+   `make install` is Unix-only. Runtime needs ImageMagick 7 (`magick.exe`,
+   portable zip works) and Ghostscript 10 (`gs` installer, run elevated —
+   there is no portable zip) plus `C:\gtk\bin` on `PATH` (for the GTK DLLs).
+   Tip: if monochrome Fax/PDF output looks broken and your user name contains
+   non-ASCII chars, set `MAGICK_TEMPORARY_PATH` to an ASCII-only directory.
 
 ## Install local for development
 ```

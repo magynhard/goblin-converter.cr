@@ -73,7 +73,11 @@ describe GoblinApp do
   describe ".magick_command" do
     it "quotes paths with spaces for copy-pasteable logs" do
       options = GoblinApp::ConversionOptions.new
-      GoblinApp.magick_command("/tmp/my doc.pdf", "/tmp/b.pdf", options).should contain "'/tmp/my doc.pdf'"
+      {% if flag?(:win32) %}
+        GoblinApp.magick_command("/tmp/my doc.pdf", "/tmp/b.pdf", options).should contain "\"/tmp/my doc.pdf\""
+      {% else %}
+        GoblinApp.magick_command("/tmp/my doc.pdf", "/tmp/b.pdf", options).should contain "'/tmp/my doc.pdf'"
+      {% end %}
     end
   end
 
@@ -84,9 +88,16 @@ describe GoblinApp do
     end
 
     it "decodes nonzero exit codes (status is exit << 8)" do
-      GoblinApp.exited_ok?(256).should be_false
-      GoblinApp.exit_code(256).should eq 1
-      GoblinApp.exit_code(3 << 8).should eq 3
+      {% if flag?(:win32) %}
+        # On Windows the status already is the plain exit code.
+        GoblinApp.exited_ok?(1).should be_false
+        GoblinApp.exit_code(1).should eq 1
+        GoblinApp.exit_code(3).should eq 3
+      {% else %}
+        GoblinApp.exited_ok?(256).should be_false
+        GoblinApp.exit_code(256).should eq 1
+        GoblinApp.exit_code(3 << 8).should eq 3
+      {% end %}
     end
 
     it "rejects signal deaths (no normal exit, e.g. SIGKILL is status 9)" do
