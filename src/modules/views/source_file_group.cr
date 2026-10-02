@@ -11,6 +11,9 @@ module GoblinApp
 
       button_box = Gtk::Box.new(:horizontal, 0)
       button_box.append(source_button)
+      button_box.append(folder_menu_button("app.open-source-folder", "open-source-folder") do
+        open_containing_folder(@form_data.source_path)
+      end)
 
       @source_file_row = Adw::ActionRow.new
       @source_file_row.not_nil!.title = GoblinApp.translate("Select Source File")
@@ -59,6 +62,51 @@ module GoblinApp
         @form_data = @form_data.copy_with(target_path: auto_target)
         @output_entry_row.not_nil!.subtitle = auto_target
         GoblinApp.log("Target auto-set: #{auto_target}")
+      end
+    end
+
+    # "..." menu button with an "Open folder" entry calling the block.
+    private def folder_menu_button(menu_action : String, action_name : String, &block : ->) : Gtk::MenuButton
+      callback = block
+
+      menu_button = Gtk::MenuButton.new
+      menu_button.icon_name = "view-more-symbolic"
+      menu_button.valign = :center
+      menu_button.halign = :center
+      menu_button.margin_start = 10
+
+      popover = Gtk::PopoverMenu.new
+      menu_button.popover = popover
+
+      menu_model = Gio::Menu.new
+      menu_model.append(GoblinApp.translate("Open folder"), menu_action)
+      popover.menu_model = menu_model
+
+      action = Gio::SimpleAction.new(action_name, nil)
+      action.activate_signal.connect do
+        callback.call
+      end
+      @app.add_action(action)
+
+      menu_button
+    end
+
+    # Opens the folder containing the given file in the system file manager.
+    private def open_containing_folder(path : String?) : Nil
+      if path.nil? || path.empty?
+        GoblinApp.log("Open folder aborted: no file selected")
+        Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("Please select a file first."), message_type: :error)
+        return
+      end
+      launcher = Gtk::FileLauncher.new(Gio::File.new_for_path(path))
+      GoblinApp.log("Opening folder for: #{path}")
+      launcher.open_containing_folder(@window, nil) do |_source, result|
+        begin
+          launcher.open_containing_folder_finish(result)
+        rescue ex
+          GoblinApp.log("Failed to open folder: #{ex.message}")
+          Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("Could not open folder."), message_type: :error)
+        end
       end
     end
 

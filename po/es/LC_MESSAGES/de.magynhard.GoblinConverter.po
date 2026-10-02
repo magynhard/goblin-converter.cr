@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-02 07:20+0200\n"
+"POT-Creation-Date: 2026-10-02 12:16+0200\n"
 "PO-Revision-Date: 2025-01-09 21:31+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/modules/views/main_window.cr:98
+#: src/modules/views/main_window.cr:99
 msgid "A simple document converter"
 msgstr "Un convertidor de documentos simple"
 
-#: src/modules/views/main_window.cr:115
+#: src/modules/views/main_window.cr:116
 msgid "About"
 msgstr "Acerca de"
 
@@ -87,36 +87,49 @@ msgstr "Eliminar metadatos"
 
 #: src/modules/views/conversion_mode_group.cr:65
 msgid "Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file"
-msgstr "Elimina metadatos como EXIF, IPTC, XMP y perfiles ICC del archivo de salida"
+msgstr ""
+"Elimina metadatos como EXIF, IPTC, XMP y perfiles ICC del archivo de salida"
 
 #: src/modules/views/source_file_group.cr:5
 msgid "Source"
 msgstr "Origen"
 
-#: src/modules/views/source_file_group.cr:16
-#: src/modules/views/source_file_group.cr:55
+#: src/modules/views/source_file_group.cr:19
+#: src/modules/views/source_file_group.cr:57
 msgid "Select Source File"
 msgstr "Seleccionar archivo de origen"
+
+#: src/modules/views/source_file_group.cr:81
+msgid "Open folder"
+msgstr "Abrir carpeta"
+
+#: src/modules/views/source_file_group.cr:97
+msgid "Please select a file first."
+msgstr "Seleccione primero un archivo."
+
+#: src/modules/views/source_file_group.cr:107
+msgid "Could not open folder."
+msgstr "No se pudo abrir la carpeta."
 
 #: src/modules/views/target_file_group.cr:5
 msgid "Target"
 msgstr "Archivo de destino"
 
-#: src/modules/views/target_file_group.cr:23
-#: src/modules/views/target_file_group.cr:62
+#: src/modules/views/target_file_group.cr:26
+#: src/modules/views/target_file_group.cr:64
 msgid "Select target file"
 msgstr "Seleccionar archivo de destino"
 
-#: src/modules/views/target_file_group.cr:70
+#: src/modules/views/target_file_group.cr:72
 msgid "Edit path"
 msgstr "Editar ruta"
 
-#: src/modules/views/target_file_group.cr:77
+#: src/modules/views/target_file_group.cr:79
 #: src/modules/functions/dialogs.cr:105
 msgid "_Cancel"
 msgstr "_Cancelar"
 
-#: src/modules/views/target_file_group.cr:78
+#: src/modules/views/target_file_group.cr:80
 msgid "_Apply"
 msgstr "_Aplicar"
 

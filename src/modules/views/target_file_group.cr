@@ -18,6 +18,9 @@ module GoblinApp
       button_box = Gtk::Box.new(:horizontal, 0)
       button_box.append(edit_button)
       button_box.append(save_button)
+      button_box.append(folder_menu_button("app.open-target-folder", "open-target-folder") do
+        open_containing_folder(@form_data.target_path)
+      end)
 
       @output_entry_row = Adw::ActionRow.new
       @output_entry_row.not_nil!.title = GoblinApp.translate("Select target file")

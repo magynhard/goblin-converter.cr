@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-02 07:20+0200\n"
+"POT-Creation-Date: 2026-10-02 12:16+0200\n"
 "PO-Revision-Date: 2025-01-09 21:31+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: src/modules/views/main_window.cr:98
+#: src/modules/views/main_window.cr:99
 msgid "A simple document converter"
 msgstr "一个简单的文档转换器"
 
-#: src/modules/views/main_window.cr:115
+#: src/modules/views/main_window.cr:116
 msgid "About"
 msgstr "关于"
 
@@ -93,30 +93,42 @@ msgstr "从输出文件中去除 EXIF、IPTC、XMP 和 ICC 配置文件等元数
 msgid "Source"
 msgstr "源"
 
-#: src/modules/views/source_file_group.cr:16
-#: src/modules/views/source_file_group.cr:55
+#: src/modules/views/source_file_group.cr:19
+#: src/modules/views/source_file_group.cr:57
 msgid "Select Source File"
 msgstr "选择源文件"
+
+#: src/modules/views/source_file_group.cr:81
+msgid "Open folder"
+msgstr "打开文件夹"
+
+#: src/modules/views/source_file_group.cr:97
+msgid "Please select a file first."
+msgstr "请先选择文件。"
+
+#: src/modules/views/source_file_group.cr:107
+msgid "Could not open folder."
+msgstr "无法打开文件夹。"
 
 #: src/modules/views/target_file_group.cr:5
 msgid "Target"
 msgstr "目标"
 
-#: src/modules/views/target_file_group.cr:23
-#: src/modules/views/target_file_group.cr:62
+#: src/modules/views/target_file_group.cr:26
+#: src/modules/views/target_file_group.cr:64
 msgid "Select target file"
 msgstr "选择目标文件"
 
-#: src/modules/views/target_file_group.cr:70
+#: src/modules/views/target_file_group.cr:72
 msgid "Edit path"
 msgstr "编辑路径"
 
-#: src/modules/views/target_file_group.cr:77
+#: src/modules/views/target_file_group.cr:79
 #: src/modules/functions/dialogs.cr:105
 msgid "_Cancel"
 msgstr "取消(_C)"
 
-#: src/modules/views/target_file_group.cr:78
+#: src/modules/views/target_file_group.cr:80
 msgid "_Apply"
 msgstr "应用(_A)"
 
