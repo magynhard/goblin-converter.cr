@@ -13,4 +13,11 @@ module GoblinApp
   def self.translate(text : String) : String
     Gettext.gettext(text)
   end
+
+  # Debug logger to stdout with timestamp prefix - always active
+  def self.log(message : String) : Nil
+    timestamp = Time.local.to_s("%Y-%m-%d %H:%M:%S")
+    STDOUT.puts("[#{timestamp}] #{message}")
+    STDOUT.flush
+  end
 end

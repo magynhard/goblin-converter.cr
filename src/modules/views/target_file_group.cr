@@ -46,6 +46,7 @@ module GoblinApp
             path = files.first.path.to_s
             @form_data = @form_data.copy_with(target_path: path)
             @output_entry_row.not_nil!.subtitle = path
+            GoblinApp.log("Target changed (drag & drop): #{path}")
           end
         end
         true
@@ -61,6 +62,7 @@ module GoblinApp
       OpenFileDialog.show(@window, GoblinApp.translate("Select target file"), Gtk::FileChooserAction::Save) do |file|
         @form_data = @form_data.copy_with(target_path: file)
         @output_entry_row.not_nil!.subtitle = file
+        GoblinApp.log("Target changed (file dialog): #{file}")
       end
     end
 
@@ -82,6 +84,7 @@ module GoblinApp
         if response == "apply"
           @form_data = @form_data.copy_with(target_path: entry.text)
           @output_entry_row.not_nil!.subtitle = entry.text
+          GoblinApp.log("Target changed (manual edit): #{entry.text}")
         end
         dialog.force_close
       end

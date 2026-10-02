@@ -24,55 +24,156 @@ module GoblinApp
       output_file = @form_data.target_path
 
       if source_file.nil? || source_file.empty? || output_file.nil? || output_file.empty?
+        GoblinApp.log("Conversion aborted: source or target file missing")
         Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("Please select both source and output files."), message_type: :error)
         return
       end
 
       if File.exists?(output_file)
-        selection = Dialogs.show_overwrite_dialog(@window)
-        return if selection != "overwrite"
+        GoblinApp.log("Target already exists, asking for overwrite: #{output_file}")
+        Dialogs.show_overwrite_dialog(@window) do |overwrite|
+          if overwrite
+            GoblinApp.log("Overwrite confirmed: #{output_file}")
+            start_conversion(source_file, output_file)
+          else
+            GoblinApp.log("Conversion cancelled (target exists): #{output_file}")
+          end
+        end
+        return
       end
 
+      start_conversion(source_file, output_file)
+    end
+
+    # Runs magick via Gio::SubprocessLauncher (argv, no shell) with
+    # stdout/stderr redirected to tempfiles, then polls completion with
+    # a raw waitpid(WNOHANG) from a GLib.timeout on the main loop.
+    # Never use Crystal Thread/spawn/Channel or Process (with any
+    # redirects) for subprocesses here: fibers don't run while GTK
+    # blocks the main thread, and Process waiting hangs on worker
+    # threads (proven via headless harness). waitpid on the main thread
+    # never blocks thanks to WNOHANG.
+    private def start_conversion(source_file : String, output_file : String)
       options = @form_data.options
       mode = options.mode
       density = options.resolution
       threshold = options.threshold
       quality = options.quality
 
-      mode_parameter = case mode
-                       when "monochrome"
-                         "-threshold #{threshold}% -monochrome -compress Fax"
-                       when "grayscale"
-                         "-colorspace Gray -compress Zip"
-                       when "grayscale_quality"
-                         "-colorspace Gray -compress JPEG -quality #{quality}"
-                       when "color"
-                         "-compress JPEG -quality #{quality}"
-                       else
-                         "-threshold #{threshold}% -monochrome -compress Fax"
-                       end
+      mode_args = case mode
+                  when "monochrome"
+                    ["-threshold", "#{threshold}%", "-monochrome", "-compress", "Fax"]
+                  when "grayscale"
+                    ["-colorspace", "Gray", "-compress", "Zip"]
+                  when "grayscale_quality"
+                    ["-colorspace", "Gray", "-compress", "JPEG", "-quality", quality.to_s]
+                  when "color"
+                    ["-compress", "JPEG", "-quality", quality.to_s]
+                  else
+                    ["-threshold", "#{threshold}%", "-monochrome", "-compress", "Fax"]
+                  end
 
-      strip_flag = options.strip_metadata ? " -strip" : ""
-      command = "magick -density #{density} #{Process.quote(source_file)} #{mode_parameter}#{strip_flag} #{Process.quote(output_file)}"
+      strip_args = options.strip_metadata ? ["-strip"] : [] of String
+      argv = ["magick", "-density", density.to_s, source_file] + mode_args + strip_args + [output_file]
+      GoblinApp.log("Running: #{argv.map { |arg| Process.quote(arg) }.join(" ")}")
 
-      info = Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("Converting..."), message_type: :info)
+      progress = Dialogs.show_progress_dialog(@window)
 
-      channel = Channel(Bool).new
+      out_log = File.tempfile("goblin-converter-stdout", ".log")
+      err_log = File.tempfile("goblin-converter-stderr", ".log")
 
-      spawn do
-        result = Process.run(command, shell: true, error: Process::Redirect::Pipe, output: Process::Redirect::Pipe)
-        channel.send(result.success?)
+      proc = begin
+        launcher = Gio::SubprocessLauncher.new(Gio::SubprocessFlags::SearchPathFromEnvp)
+        launcher.take_stdout_fd(out_log.fd)
+        launcher.take_stderr_fd(err_log.fd)
+        null_in = File.open(File::NULL, "r")
+        launcher.take_stdin_fd(null_in.fd)
+        subprocess = launcher.spawnv(argv)
+        null_in.close
+        subprocess
+      rescue ex
+        GoblinApp.log("Failed to launch magick: #{ex.message}")
+        progress.force_close
+        read_and_cleanup(out_log)
+        read_and_cleanup(err_log)
+        Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("An error occurred while conversion!"), message_type: :error)
+        return
       end
 
-      spawn do
-        success = channel.receive
-        info.force_close
-        if success
-          Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("Conversion Complete!"), message_type: :info)
+      pid = proc.identifier.try(&.to_i?)
+      if pid.nil?
+        GoblinApp.log("Failed to launch magick: could not determine child pid")
+        progress.force_close
+        read_and_cleanup(out_log)
+        read_and_cleanup(err_log)
+        Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("An error occurred while conversion!"), message_type: :error)
+        return
+      end
+
+      GoblinApp.log("magick launched (pid #{pid}), waiting for completion...")
+      GLib.timeout(250.milliseconds) do
+        ret = LibC.waitpid(pid, out status, LibC::WNOHANG)
+        if ret == 0
+          true
+        elsif ret == pid
+          # We reaped the child ourselves (beat GLib's child watch).
+          finish_conversion(exited_ok?(status), "exit #{exit_code(status)}",
+            source_file, output_file, progress, out_log, err_log)
+          false
+        elsif Errno.value == Errno::EINTR
+          # Transient interruption, child state unknown: keep polling.
+          true
         else
-          Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("An error occurred while conversion!"), message_type: :error)
+          # ECHILD: GLib's child watch already reaped the process, ask it.
+          ok = proc.successful
+          info = ok ? "exit #{exit_code(proc.exit_status)}" : "raw status #{proc.exit_status}"
+          finish_conversion(ok, info, source_file, output_file, progress, out_log, err_log)
+          false
         end
       end
+    end
+
+    private def finish_conversion(success : Bool, status_info : String, source_file : String, output_file : String, progress : Adw::AlertDialog, out_log : File, err_log : File) : Nil
+      stdout_text = read_and_cleanup(out_log)
+      stderr_text = read_and_cleanup(err_log)
+      progress.force_close
+      if success
+        GoblinApp.log("Conversion succeeded (#{status_info}): #{source_file} -> #{output_file}")
+        GoblinApp.log("magick stdout:\n#{stdout_text}") unless stdout_text.empty?
+        GoblinApp.log("magick stderr:\n#{stderr_text}") unless stderr_text.empty?
+        Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("Conversion Complete!"), message_type: :info)
+      else
+        GoblinApp.log("Conversion failed (#{status_info}): #{source_file} -> #{output_file}")
+        GoblinApp.log("magick stdout:\n#{stdout_text}") unless stdout_text.empty?
+        GoblinApp.log("magick stderr:\n#{stderr_text}") unless stderr_text.empty?
+        Dialogs.show_custom_dialog(@window, text: GoblinApp.translate("An error occurred while conversion!"), message_type: :error)
+      end
+    end
+
+    # WIFEXITED(status) != 0 && WEXITSTATUS(status) == 0 (Linux layout).
+    private def exited_ok?(status : Int32) : Bool
+      (status & 0x7f) == 0 && ((status >> 8) & 0xff) == 0
+    end
+
+    private def exit_code(status : Int32) : Int32
+      (status >> 8) & 0xff
+    end
+
+    # Reads a tempfile's content, then closes and deletes it.
+    private def read_and_cleanup(log : File) : String
+      text = begin
+        log.rewind
+        log.gets_to_end
+      rescue
+        ""
+      end
+      begin
+        path = log.path
+        log.close
+        File.delete(path)
+      rescue
+      end
+      text
     end
   end
 end

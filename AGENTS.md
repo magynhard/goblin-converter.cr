@@ -21,7 +21,8 @@ Repo language is English — keep code, comments, docs, and commit messages in E
 ## Architecture
 - Entry `src/goblin-converter.cr` → `GoblinApp::App < Adw::Application` → `MainWindow` in `src/modules/views/main_window.cr`.
 - `MainWindow` is reopened across `src/modules/views/*.cr` (`class MainWindow`); each `create_*_group(vbox)` builds one UI section. State lives in `ConversionOptions`/`FormData` structs in `main_window.cr`.
-- Convert logic only in `src/modules/views/convert_button_group.cr:on_convert_clicked`: builds `magick -density …` shell string (`Process.quote`, `shell: true`), runs async via `spawn` + `Channel(Bool)`.
+- Convert logic only in `src/modules/views/convert_button_group.cr:start_conversion`: runs `magick` via `Gio::SubprocessLauncher` (argv, no shell) with stdout/stderr redirected to tempfiles, polls completion with raw `waitpid(WNOHANG)` from a `GLib.timeout` (ECHILD means GLib's child watch reaped it → ask `proc.successful`).
+- Never use Crystal `Thread`/`spawn`/`Channel` or `Process` with pipe-like redirects (`IO::Memory`, `Redirect::Pipe`) for subprocesses: fibers don't run while GTK blocks the main thread, and `Process` waiting hangs on worker threads (proven via headless harness). `Process.quote` as a pure string helper is fine.
 - Dialogs: `src/modules/functions/dialogs.cr`; file picker: `open_file_dialog.cr`.
 - `src/modules/prerequisites.cr`: `VERSION` via `read_file("./shard.yml")` macro — bump version only in `shard.yml`; Gettext domain `de.magynhard.GoblinConverter` with path relative to `po/`.
 

@@ -35,9 +35,11 @@ module GoblinApp
             path = files.first.path.to_s
             @form_data = @form_data.copy_with(source_path: path)
             @source_file_row.not_nil!.subtitle = path
+            GoblinApp.log("Source changed (drag & drop): #{path}")
             auto_target = path.gsub(/\.([a-zA-Z]{3,4})$/, "_converted.\\1")
             @form_data = @form_data.copy_with(target_path: auto_target)
             @output_entry_row.not_nil!.subtitle = auto_target
+            GoblinApp.log("Target auto-set: #{auto_target}")
           end
         end
         true
@@ -53,9 +55,11 @@ module GoblinApp
       OpenFileDialog.show(@window, GoblinApp.translate("Select Source File"), Gtk::FileChooserAction::Open) do |file|
         @form_data = @form_data.copy_with(source_path: file)
         @source_file_row.not_nil!.subtitle = file
+        GoblinApp.log("Source changed (file dialog): #{file}")
         auto_target = file.gsub(/\.([a-zA-Z]{3,4})$/, "_converted.\\1")
         @form_data = @form_data.copy_with(target_path: auto_target)
         @output_entry_row.not_nil!.subtitle = auto_target
+        GoblinApp.log("Target auto-set: #{auto_target}")
       end
     end
   end
