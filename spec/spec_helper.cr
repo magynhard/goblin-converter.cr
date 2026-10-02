@@ -1,0 +1,5 @@
+require "spec"
+require "libadwaita"
+require "../src/modules/prerequisites"
+require "../src/modules/views/main_window"
+require "../src/modules/functions/conversion_logic"

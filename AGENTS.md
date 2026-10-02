@@ -11,7 +11,7 @@ Repo language is English — keep code, comments, docs, and commit messages in E
 - Format check: `crystal tool format --check src/` / fix with `crystal tool format src/`
 - Install: `make install` (prefix `/usr/local`, app data copied to `/usr/local/share/goblin-converter` incl. `src/`, `po/`, `data/`, `shard.yml`)
 - Uninstall / clean: `make uninstall` / `make clean`
-- No tests: no `spec/` dir, no test target. Verify with `make build`.
+- Tests: headless specs via `make test` (= `crystal spec`; note: there is no `crystal test` command). GUI code is untestable headless — keep new logic in pure `GoblinApp.*` helpers in `src/modules/functions/conversion_logic.cr` and cover them in `spec/`. Specs must never instantiate GTK widgets.
 
 ## Deps
 - Crystal 1.20+ (shard.yml says >=1.10, README dev requirement is 1.20+).

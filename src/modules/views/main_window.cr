@@ -19,7 +19,7 @@ module GoblinApp
       @resolution = 300,
       @threshold = 66,
       @quality = 75,
-      @strip_metadata = true
+      @strip_metadata = true,
     )
     end
 
@@ -29,7 +29,7 @@ module GoblinApp
         resolution: resolution || self.resolution,
         threshold: threshold || self.threshold,
         quality: quality || self.quality,
-        strip_metadata: strip_metadata || self.strip_metadata
+        strip_metadata: strip_metadata.nil? ? self.strip_metadata : strip_metadata
       )
     end
   end
@@ -42,7 +42,7 @@ module GoblinApp
     def initialize(
       @source_path = nil,
       @target_path = nil,
-      @options = ConversionOptions.new
+      @options = ConversionOptions.new,
     )
     end
 

@@ -5,10 +5,13 @@ SHAREDIR = $(PREFIX)/share
 APPDIR = $(SHAREDIR)/goblin-converter
 LOCALEDIR = $(SHAREDIR)/locale
 
-.PHONY: build run install uninstall locales clean
+.PHONY: build run install uninstall locales clean test
 
 build:
 	crystal build src/goblin-converter.cr -o bin/goblin-converter
+
+test:
+	crystal spec
 
 run: build
 	./bin/goblin-converter
