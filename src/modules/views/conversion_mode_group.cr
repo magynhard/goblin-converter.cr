@@ -14,7 +14,15 @@ module GoblinApp
       # Mode selector
       mode_row = Adw::ComboRow.new
       mode_row.title = GoblinApp.translate("Mode")
-      mode_row.model = Gtk::StringList.new(CONVERSION_MODES.keys.to_a)
+      # Display names as literals so xgettext can extract them.
+      # Order must match CONVERSION_MODES (lookup by selected index).
+      mode_names = [
+        GoblinApp.translate("Monochrome"),
+        GoblinApp.translate("Grayscale"),
+        GoblinApp.translate("Grayscale Quality"),
+        GoblinApp.translate("Color"),
+      ]
+      mode_row.model = Gtk::StringList.new(mode_names)
       mode_row.selected = 0
       mode_row.notify_signal.connect do
         @form_data = @form_data.copy_with(options: @form_data.options.copy_with(mode: CONVERSION_MODES.values[mode_row.selected]))
@@ -53,8 +61,8 @@ module GoblinApp
 
       # Strip metadata
       strip_row = Adw::ActionRow.new
-      strip_row.title = "Strip metadata"
-      strip_row.subtitle = "Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file"
+      strip_row.title = GoblinApp.translate("Strip metadata")
+      strip_row.subtitle = GoblinApp.translate("Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file")
 
       switch = Gtk::Switch.new
       switch.valign = :center

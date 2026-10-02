@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 22:19+0200\n"
+"POT-Creation-Date: 2026-10-02 07:20+0200\n"
 "PO-Revision-Date: 2025-01-09 21:31+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -26,7 +26,6 @@ msgid "About"
 msgstr "Über"
 
 #: src/modules/views/conversion_mode_group.cr:12
-#, fuzzy
 msgid "Conversion"
 msgstr "Konvertierung"
 
@@ -34,12 +33,27 @@ msgstr "Konvertierung"
 msgid "Mode"
 msgstr "Modus"
 
-#: src/modules/views/conversion_mode_group.cr:26
-#, fuzzy
+#: src/modules/views/conversion_mode_group.cr:20
+msgid "Monochrome"
+msgstr "Monochrom"
+
+#: src/modules/views/conversion_mode_group.cr:21
+msgid "Grayscale"
+msgstr "Graustufen"
+
+#: src/modules/views/conversion_mode_group.cr:22
+msgid "Grayscale Quality"
+msgstr "Graustufen-Qualität"
+
+#: src/modules/views/conversion_mode_group.cr:23
+msgid "Color"
+msgstr "Farbe"
+
+#: src/modules/views/conversion_mode_group.cr:34
 msgid "Threshold"
 msgstr "Schwellenwert"
 
-#: src/modules/views/conversion_mode_group.cr:27
+#: src/modules/views/conversion_mode_group.cr:35
 msgid ""
 "Decrease for more black.\n"
 "66 is a good fit for colored docs.\n"
@@ -51,32 +65,38 @@ msgstr ""
 "Für graustufige Dokumente sind 50-60\n"
 "oft eine gute Wahl."
 
-#: src/modules/views/conversion_mode_group.cr:36
+#: src/modules/views/conversion_mode_group.cr:44
 msgid "Resolution"
 msgstr "Auflösung"
 
-#: src/modules/views/conversion_mode_group.cr:37
+#: src/modules/views/conversion_mode_group.cr:45
 msgid "Density of the resolution in dpi for your output"
 msgstr "Dichte der Auflösung in dpi für Ihre Ausgabe"
 
-#: src/modules/views/conversion_mode_group.cr:46
-#, fuzzy
+#: src/modules/views/conversion_mode_group.cr:54
 msgid "Quality"
 msgstr "Qualität"
 
-#: src/modules/views/conversion_mode_group.cr:47
+#: src/modules/views/conversion_mode_group.cr:55
 msgid "Lossy compression quality"
 msgstr "Verlustbehaftete Kompressionsqualität"
 
+#: src/modules/views/conversion_mode_group.cr:64
+msgid "Strip metadata"
+msgstr "Metadaten entfernen"
+
+#: src/modules/views/conversion_mode_group.cr:65
+msgid "Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file"
+msgstr "Entfernt Metadaten wie EXIF, IPTC, XMP und ICC-Profile aus der Ausgabedatei"
+
 #: src/modules/views/source_file_group.cr:5
-#, fuzzy
 msgid "Source"
 msgstr "Quelldatei"
 
 #: src/modules/views/source_file_group.cr:16
 #: src/modules/views/source_file_group.cr:55
 msgid "Select Source File"
-msgstr "Wähle Quelldatei"
+msgstr "Quelldatei auswählen"
 
 #: src/modules/views/target_file_group.cr:5
 msgid "Target"
@@ -84,13 +104,21 @@ msgstr "Zieldatei"
 
 #: src/modules/views/target_file_group.cr:23
 #: src/modules/views/target_file_group.cr:62
-#, fuzzy
 msgid "Select target file"
-msgstr "Wähle Quelldatei"
+msgstr "Zieldatei auswählen"
 
 #: src/modules/views/target_file_group.cr:70
 msgid "Edit path"
 msgstr "Pfad bearbeiten"
+
+#: src/modules/views/target_file_group.cr:77
+#: src/modules/functions/dialogs.cr:105
+msgid "_Cancel"
+msgstr "_Abbrechen"
+
+#: src/modules/views/target_file_group.cr:78
+msgid "_Apply"
+msgstr "_Anwenden"
 
 #: src/modules/views/convert_button_group.cr:9
 msgid "Convert"
@@ -110,42 +138,25 @@ msgstr "Während der Konvertierung ist ein Fehler aufgetreten!"
 msgid "Conversion Complete!"
 msgstr "Konvertierung abgeschlossen!"
 
-#: src/modules/functions/dialogs.cr:94
+#: src/modules/functions/dialogs.cr:101
 msgid "File Already Exists"
 msgstr "Datei existiert bereits"
 
-#: src/modules/functions/dialogs.cr:95
+#: src/modules/functions/dialogs.cr:102
 msgid "The file already exists. Do you want to overwrite it?"
 msgstr "Die Datei existiert bereits. Möchten Sie sie überschreiben?"
 
-#: src/modules/functions/dialogs.cr:98
-msgid "_Cancel"
-msgstr "_Abbrechen"
-
-#: src/modules/functions/dialogs.cr:99
+#: src/modules/functions/dialogs.cr:106
 msgid "_Overwrite"
 msgstr "_Überschreiben"
 
-#: src/modules/functions/dialogs.cr:116
+#: src/modules/functions/dialogs.cr:123
 msgid "Converting"
-msgstr "Konvertiere..."
+msgstr "Wird konvertiert …"
 
-#: src/modules/functions/dialogs.cr:116
+#: src/modules/functions/dialogs.cr:123
 msgid "Please wait..."
 msgstr "Bitte warten..."
 
 #~ msgid "Settings"
 #~ msgstr "Einstellungen"
-
-#~ msgid "Monochrome"
-#~ msgstr "Monochrom"
-
-#~ msgid "Grayscale"
-#~ msgstr "Graustufen"
-
-#, fuzzy
-#~ msgid "Grayscale quality"
-#~ msgstr "Graustufen"
-
-#~ msgid "Color"
-#~ msgstr "Farbe"

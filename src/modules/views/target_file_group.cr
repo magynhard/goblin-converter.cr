@@ -74,8 +74,8 @@ module GoblinApp
       entry.width_chars = 60
       dialog.extra_child = entry
 
-      dialog.add_response("cancel", "_Cancel")
-      dialog.add_response("apply", "_Apply")
+      dialog.add_response("cancel", GoblinApp.translate("_Cancel"))
+      dialog.add_response("apply", GoblinApp.translate("_Apply"))
       dialog.set_response_appearance("apply", Adw::ResponseAppearance::Suggested)
       dialog.default_response = "apply"
       dialog.close_response = "cancel"

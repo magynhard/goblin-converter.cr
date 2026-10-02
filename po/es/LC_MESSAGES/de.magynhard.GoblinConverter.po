@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-01 22:19+0200\n"
+"POT-Creation-Date: 2026-10-02 07:20+0200\n"
 "PO-Revision-Date: 2025-01-09 21:31+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -34,11 +34,28 @@ msgstr "Conversión"
 msgid "Mode"
 msgstr "Modo"
 
-#: src/modules/views/conversion_mode_group.cr:26
+#: src/modules/views/conversion_mode_group.cr:20
+msgid "Monochrome"
+msgstr "Monocromo"
+
+#: src/modules/views/conversion_mode_group.cr:21
+msgid "Grayscale"
+msgstr "Escala de grises"
+
+#: src/modules/views/conversion_mode_group.cr:22
+#, fuzzy
+msgid "Grayscale Quality"
+msgstr "Escala de grises"
+
+#: src/modules/views/conversion_mode_group.cr:23
+msgid "Color"
+msgstr "Color"
+
+#: src/modules/views/conversion_mode_group.cr:34
 msgid "Threshold"
 msgstr "Umbral"
 
-#: src/modules/views/conversion_mode_group.cr:27
+#: src/modules/views/conversion_mode_group.cr:35
 msgid ""
 "Decrease for more black.\n"
 "66 is a good fit for colored docs.\n"
@@ -50,21 +67,29 @@ msgstr ""
 "Para documentos en escala de grises, 50-60 es\n"
 "a menudo una buena elección."
 
-#: src/modules/views/conversion_mode_group.cr:36
+#: src/modules/views/conversion_mode_group.cr:44
 msgid "Resolution"
 msgstr "Resolución"
 
-#: src/modules/views/conversion_mode_group.cr:37
+#: src/modules/views/conversion_mode_group.cr:45
 msgid "Density of the resolution in dpi for your output"
 msgstr "Densidad de la resolución en dpi para su salida"
 
-#: src/modules/views/conversion_mode_group.cr:46
+#: src/modules/views/conversion_mode_group.cr:54
 msgid "Quality"
 msgstr "Qualidad"
 
-#: src/modules/views/conversion_mode_group.cr:47
+#: src/modules/views/conversion_mode_group.cr:55
 msgid "Lossy compression quality"
 msgstr "Calidad de compresión con pérdida"
+
+#: src/modules/views/conversion_mode_group.cr:64
+msgid "Strip metadata"
+msgstr ""
+
+#: src/modules/views/conversion_mode_group.cr:65
+msgid "Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file"
+msgstr ""
 
 #: src/modules/views/source_file_group.cr:5
 #, fuzzy
@@ -90,6 +115,15 @@ msgstr "Seleccionar archivo de origen"
 msgid "Edit path"
 msgstr ""
 
+#: src/modules/views/target_file_group.cr:77
+#: src/modules/functions/dialogs.cr:105
+msgid "_Cancel"
+msgstr ""
+
+#: src/modules/views/target_file_group.cr:78
+msgid "_Apply"
+msgstr ""
+
 #: src/modules/views/convert_button_group.cr:9
 msgid "Convert"
 msgstr "Convertir"
@@ -108,43 +142,26 @@ msgstr ""
 msgid "Conversion Complete!"
 msgstr "¡Conversión completa!"
 
-#: src/modules/functions/dialogs.cr:94
+#: src/modules/functions/dialogs.cr:101
 msgid "File Already Exists"
 msgstr ""
 
-#: src/modules/functions/dialogs.cr:95
+#: src/modules/functions/dialogs.cr:102
 msgid "The file already exists. Do you want to overwrite it?"
 msgstr ""
 
-#: src/modules/functions/dialogs.cr:98
-msgid "_Cancel"
-msgstr ""
-
-#: src/modules/functions/dialogs.cr:99
+#: src/modules/functions/dialogs.cr:106
 msgid "_Overwrite"
 msgstr ""
 
-#: src/modules/functions/dialogs.cr:116
+#: src/modules/functions/dialogs.cr:123
 #, fuzzy
 msgid "Converting"
 msgstr "Convirtiendo..."
 
-#: src/modules/functions/dialogs.cr:116
+#: src/modules/functions/dialogs.cr:123
 msgid "Please wait..."
 msgstr ""
 
 #~ msgid "Settings"
 #~ msgstr "Configuraciones"
-
-#~ msgid "Monochrome"
-#~ msgstr "Monocromo"
-
-#~ msgid "Grayscale"
-#~ msgstr "Escala de grises"
-
-#, fuzzy
-#~ msgid "Grayscale quality"
-#~ msgstr "Escala de grises"
-
-#~ msgid "Color"
-#~ msgstr "Color"
