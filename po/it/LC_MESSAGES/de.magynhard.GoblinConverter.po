@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-02 23:59+0100\n"
+"POT-Creation-Date: 2026-10-01 22:19+0200\n"
 "PO-Revision-Date: 2025-01-09 21:31+0100\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -17,64 +17,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/dialogs/about_dialog.rb:5 src/windows/main_window.rb:67
+#: src/modules/views/main_window.cr:98
 msgid "A simple document converter"
 msgstr "Un semplice convertitore di documenti"
 
-#: src/windows/main_window.rb:89
-msgid "Settings"
-msgstr "Impostazioni"
-
-#: src/windows/main_window.rb:90
+#: src/modules/views/main_window.cr:115
 msgid "About"
 msgstr "Informazioni"
 
-#: src/windows/main/conversion_mode_group.rb:5
-msgid "Monochrome"
-msgstr "Monocromatico"
-
-#: src/windows/main/conversion_mode_group.rb:6
-msgid "Grayscale"
-msgstr ""
-
-#: src/windows/main/conversion_mode_group.rb:7
-msgid "Grayscale quality"
-msgstr ""
-
-#: src/windows/main/conversion_mode_group.rb:8
-msgid "Color"
-msgstr ""
-
-#: src/windows/main/conversion_mode_group.rb:14
+#: src/modules/views/conversion_mode_group.cr:12
 #, fuzzy
 msgid "Conversion"
 msgstr "Modalità di conversione:"
 
-#: src/windows/main/conversion_mode_group.rb:26
+#: src/modules/views/conversion_mode_group.cr:16
 msgid "Mode"
 msgstr ""
 
-#: src/windows/main/conversion_mode_group.rb:46
-msgid "Resolution"
-msgstr ""
-
-#: src/windows/main/conversion_mode_group.rb:57
-msgid "Density of the resolution in dpi for your output"
-msgstr ""
-
-#: src/windows/main/conversion_mode_group.rb:96
-msgid "Quality"
-msgstr ""
-
-#: src/windows/main/conversion_mode_group.rb:107
-msgid "Lossy compression quality"
-msgstr ""
-
-#: src/windows/main/conversion_mode_group.rb:150
+#: src/modules/views/conversion_mode_group.cr:26
 msgid "Threshold"
 msgstr ""
 
-#: src/windows/main/conversion_mode_group.rb:161
+#: src/modules/views/conversion_mode_group.cr:27
 msgid ""
 "Decrease for more black.\n"
 "66 is a good fit for colored docs.\n"
@@ -82,45 +46,94 @@ msgid ""
 "often a good choice."
 msgstr ""
 
-#: src/windows/main/convert_button_group.rb:13
-msgid "Convert"
-msgstr "Converti"
-
-#: src/windows/main/convert_button_group.rb:41
-msgid "Converting..."
-msgstr "Conversione in corso..."
-
-#: src/windows/main/convert_button_group.rb:59
-msgid "Conversion Complete!"
-msgstr "Conversione completata!"
-
-#: src/windows/main/convert_button_group.rb:61
-msgid "An error occurred while conversion!"
+#: src/modules/views/conversion_mode_group.cr:36
+msgid "Resolution"
 msgstr ""
 
-#: src/windows/main/convert_button_group.rb:64
-msgid "Please select both source and output files."
-msgstr "Seleziona sia il file di origine che il file di output."
+#: src/modules/views/conversion_mode_group.cr:37
+msgid "Density of the resolution in dpi for your output"
+msgstr ""
 
-#: src/windows/main/source_file_group.rb:6
+#: src/modules/views/conversion_mode_group.cr:46
+msgid "Quality"
+msgstr ""
+
+#: src/modules/views/conversion_mode_group.cr:47
+msgid "Lossy compression quality"
+msgstr ""
+
+#: src/modules/views/source_file_group.cr:5
 #, fuzzy
 msgid "Source"
 msgstr "File di origine:"
 
-#: src/windows/main/source_file_group.rb:22
-#: src/windows/main/source_file_group.rb:35
+#: src/modules/views/source_file_group.cr:16
+#: src/modules/views/source_file_group.cr:55
 msgid "Select Source File"
 msgstr "Seleziona il file di origine"
 
-#: src/windows/main/target_file_group.rb:6
+#: src/modules/views/target_file_group.cr:5
 msgid "Target"
 msgstr ""
 
-#: src/windows/main/target_file_group.rb:22
-#: src/windows/main/target_file_group.rb:35
+#: src/modules/views/target_file_group.cr:23
+#: src/modules/views/target_file_group.cr:62
 #, fuzzy
 msgid "Select target file"
 msgstr "Seleziona il file di origine"
+
+#: src/modules/views/target_file_group.cr:70
+msgid "Edit path"
+msgstr ""
+
+#: src/modules/views/convert_button_group.cr:9
+msgid "Convert"
+msgstr "Converti"
+
+#: src/modules/views/convert_button_group.cr:28
+msgid "Please select both source and output files."
+msgstr "Seleziona sia il file di origine che il file di output."
+
+#: src/modules/views/convert_button_group.cr:99
+#: src/modules/views/convert_button_group.cr:109
+#: src/modules/views/convert_button_group.cr:149
+msgid "An error occurred while conversion!"
+msgstr ""
+
+#: src/modules/views/convert_button_group.cr:144
+msgid "Conversion Complete!"
+msgstr "Conversione completata!"
+
+#: src/modules/functions/dialogs.cr:94
+msgid "File Already Exists"
+msgstr ""
+
+#: src/modules/functions/dialogs.cr:95
+msgid "The file already exists. Do you want to overwrite it?"
+msgstr ""
+
+#: src/modules/functions/dialogs.cr:98
+msgid "_Cancel"
+msgstr ""
+
+#: src/modules/functions/dialogs.cr:99
+msgid "_Overwrite"
+msgstr ""
+
+#: src/modules/functions/dialogs.cr:116
+#, fuzzy
+msgid "Converting"
+msgstr "Conversione in corso..."
+
+#: src/modules/functions/dialogs.cr:116
+msgid "Please wait..."
+msgstr ""
+
+#~ msgid "Settings"
+#~ msgstr "Impostazioni"
+
+#~ msgid "Monochrome"
+#~ msgstr "Monocromatico"
 
 #~ msgid "Select Source File ..."
 #~ msgstr "Seleziona il file di origine ..."

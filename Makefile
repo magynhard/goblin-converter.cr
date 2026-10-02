@@ -44,7 +44,7 @@ locales:
 generate_locales:
 	@potfiles=$$(cat po/POTFILES 2>/dev/null); \
 	if [ -n "$$potfiles" ]; then \
-		xgettext -o po/$(APP_ID).pot --from-code=UTF-8 --keyword=_ $$potfiles; \
+		xgettext -o po/$(APP_ID).pot --from-code=UTF-8 --language=C --keyword=translate $$potfiles; \
 	fi
 	@for lang in $$(cat po/LINGUAS 2>/dev/null); do \
 		mkdir -p po/$$lang/LC_MESSAGES; \
