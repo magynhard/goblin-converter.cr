@@ -7,6 +7,7 @@ module GoblinApp
     def show(parent, title : String, action : Gtk::FileChooserAction, file : String? = nil, &block : String ->)
       dialog = Gtk::FileDialog.new
       dialog.title = title
+      preset_initial_location(dialog, action, file)
 
       callback = block
 
@@ -28,6 +29,18 @@ module GoblinApp
             STDERR.puts("Error: #{e.message}")
           end
         end
+      end
+    end
+
+    private def preset_initial_location(dialog : Gtk::FileDialog, action : Gtk::FileChooserAction, file : String?) : Nil
+      return if file.nil? || file.empty?
+      if action == Gtk::FileChooserAction::Save
+        # Prefill folder + filename (target may not exist yet).
+        parent = File.dirname(file)
+        dialog.initial_folder = Gio::File.new_for_path(parent) if Dir.exists?(parent)
+        dialog.initial_name = File.basename(file)
+      elsif File.exists?(file)
+        dialog.initial_file = Gio::File.new_for_path(file)
       end
     end
   end

@@ -58,7 +58,7 @@ module GoblinApp
     end
 
     private def on_target_row_clicked
-      OpenFileDialog.show(@window, GoblinApp.translate("Select target file"), Gtk::FileChooserAction::Save) do |file|
+      OpenFileDialog.show(@window, GoblinApp.translate("Select target file"), Gtk::FileChooserAction::Save, @form_data.target_path) do |file|
         @form_data = @form_data.copy_with(target_path: file)
         @output_entry_row.not_nil!.subtitle = file
         GoblinApp.log("Target changed (file dialog): #{file}")
