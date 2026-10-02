@@ -26,13 +26,12 @@ msgid "About"
 msgstr "정보"
 
 #: src/modules/views/conversion_mode_group.cr:12
-#, fuzzy
 msgid "Conversion"
-msgstr "변환 모드:"
+msgstr "변환"
 
 #: src/modules/views/conversion_mode_group.cr:16
 msgid "Mode"
-msgstr ""
+msgstr "모드"
 
 #: src/modules/views/conversion_mode_group.cr:20
 msgid "Monochrome"
@@ -40,19 +39,19 @@ msgstr "모노크롬"
 
 #: src/modules/views/conversion_mode_group.cr:21
 msgid "Grayscale"
-msgstr ""
+msgstr "그레이스케일"
 
 #: src/modules/views/conversion_mode_group.cr:22
 msgid "Grayscale Quality"
-msgstr ""
+msgstr "그레이스케일(품질)"
 
 #: src/modules/views/conversion_mode_group.cr:23
 msgid "Color"
-msgstr ""
+msgstr "컬러"
 
 #: src/modules/views/conversion_mode_group.cr:34
 msgid "Threshold"
-msgstr ""
+msgstr "임계값"
 
 #: src/modules/views/conversion_mode_group.cr:35
 msgid ""
@@ -61,35 +60,38 @@ msgid ""
 "For grayscaled documents 50-60 is\n"
 "often a good choice."
 msgstr ""
+"검은색을 늘리려면 낮추십시오.\n"
+"66은 컬러 문서에 적합합니다.\n"
+"그레이스케일 문서에는 50-60이\n"
+"적합한 경우가 많습니다."
 
 #: src/modules/views/conversion_mode_group.cr:44
 msgid "Resolution"
-msgstr ""
+msgstr "해상도"
 
 #: src/modules/views/conversion_mode_group.cr:45
 msgid "Density of the resolution in dpi for your output"
-msgstr ""
+msgstr "출력물의 해상도 밀도(dpi)"
 
 #: src/modules/views/conversion_mode_group.cr:54
 msgid "Quality"
-msgstr ""
+msgstr "품질"
 
 #: src/modules/views/conversion_mode_group.cr:55
 msgid "Lossy compression quality"
-msgstr ""
+msgstr "손실 압축 품질"
 
 #: src/modules/views/conversion_mode_group.cr:64
 msgid "Strip metadata"
-msgstr ""
+msgstr "메타데이터 제거"
 
 #: src/modules/views/conversion_mode_group.cr:65
 msgid "Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file"
-msgstr ""
+msgstr "출력 파일에서 EXIF, IPTC, XMP, ICC 프로파일 등의 메타데이터를 제거합니다"
 
 #: src/modules/views/source_file_group.cr:5
-#, fuzzy
 msgid "Source"
-msgstr "소스 파일:"
+msgstr "소스"
 
 #: src/modules/views/source_file_group.cr:16
 #: src/modules/views/source_file_group.cr:55
@@ -98,26 +100,25 @@ msgstr "소스 파일 선택"
 
 #: src/modules/views/target_file_group.cr:5
 msgid "Target"
-msgstr ""
+msgstr "대상"
 
 #: src/modules/views/target_file_group.cr:23
 #: src/modules/views/target_file_group.cr:62
-#, fuzzy
 msgid "Select target file"
-msgstr "소스 파일 선택"
+msgstr "대상 파일 선택"
 
 #: src/modules/views/target_file_group.cr:70
 msgid "Edit path"
-msgstr ""
+msgstr "경로 편집"
 
 #: src/modules/views/target_file_group.cr:77
 #: src/modules/functions/dialogs.cr:105
 msgid "_Cancel"
-msgstr ""
+msgstr "취소(_C)"
 
 #: src/modules/views/target_file_group.cr:78
 msgid "_Apply"
-msgstr ""
+msgstr "적용(_A)"
 
 #: src/modules/views/convert_button_group.cr:9
 msgid "Convert"
@@ -131,7 +132,7 @@ msgstr "소스 파일과 출력 파일을 모두 선택하십시오."
 #: src/modules/views/convert_button_group.cr:109
 #: src/modules/views/convert_button_group.cr:149
 msgid "An error occurred while conversion!"
-msgstr ""
+msgstr "변환 중 오류가 발생했습니다."
 
 #: src/modules/views/convert_button_group.cr:144
 msgid "Conversion Complete!"
@@ -139,24 +140,23 @@ msgstr "변환 완료!"
 
 #: src/modules/functions/dialogs.cr:101
 msgid "File Already Exists"
-msgstr ""
+msgstr "파일이 이미 있습니다"
 
 #: src/modules/functions/dialogs.cr:102
 msgid "The file already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "파일이 이미 있습니다. 덮어쓰시겠습니까?"
 
 #: src/modules/functions/dialogs.cr:106
 msgid "_Overwrite"
-msgstr ""
+msgstr "덮어쓰기(_O)"
 
 #: src/modules/functions/dialogs.cr:123
-#, fuzzy
 msgid "Converting"
 msgstr "변환 중..."
 
 #: src/modules/functions/dialogs.cr:123
 msgid "Please wait..."
-msgstr ""
+msgstr "기다려 주십시오..."
 
 #~ msgid "Settings"
 #~ msgstr "설정"

@@ -26,13 +26,12 @@ msgid "About"
 msgstr "关于"
 
 #: src/modules/views/conversion_mode_group.cr:12
-#, fuzzy
 msgid "Conversion"
-msgstr "转换模式："
+msgstr "转换"
 
 #: src/modules/views/conversion_mode_group.cr:16
 msgid "Mode"
-msgstr ""
+msgstr "模式"
 
 #: src/modules/views/conversion_mode_group.cr:20
 msgid "Monochrome"
@@ -43,16 +42,14 @@ msgid "Grayscale"
 msgstr "灰度"
 
 #: src/modules/views/conversion_mode_group.cr:22
-#, fuzzy
 msgid "Grayscale Quality"
-msgstr "灰度"
+msgstr "灰度（质量）"
 
 #: src/modules/views/conversion_mode_group.cr:23
 msgid "Color"
 msgstr "彩色"
 
 #: src/modules/views/conversion_mode_group.cr:34
-#, fuzzy
 msgid "Threshold"
 msgstr "阈值"
 
@@ -63,35 +60,38 @@ msgid ""
 "For grayscaled documents 50-60 is\n"
 "often a good choice."
 msgstr ""
+"调低以获得更多黑色。\n"
+"66 适合彩色文档。\n"
+"对于灰度文档，50-60\n"
+"通常是不错的选择。"
 
 #: src/modules/views/conversion_mode_group.cr:44
 msgid "Resolution"
-msgstr ""
+msgstr "分辨率"
 
 #: src/modules/views/conversion_mode_group.cr:45
 msgid "Density of the resolution in dpi for your output"
-msgstr ""
+msgstr "输出文件的分辨率密度（dpi）"
 
 #: src/modules/views/conversion_mode_group.cr:54
 msgid "Quality"
-msgstr ""
+msgstr "质量"
 
 #: src/modules/views/conversion_mode_group.cr:55
 msgid "Lossy compression quality"
-msgstr ""
+msgstr "有损压缩质量"
 
 #: src/modules/views/conversion_mode_group.cr:64
 msgid "Strip metadata"
-msgstr ""
+msgstr "去除元数据"
 
 #: src/modules/views/conversion_mode_group.cr:65
 msgid "Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file"
-msgstr ""
+msgstr "从输出文件中去除 EXIF、IPTC、XMP 和 ICC 配置文件等元数据"
 
 #: src/modules/views/source_file_group.cr:5
-#, fuzzy
 msgid "Source"
-msgstr "源文件："
+msgstr "源"
 
 #: src/modules/views/source_file_group.cr:16
 #: src/modules/views/source_file_group.cr:55
@@ -100,26 +100,25 @@ msgstr "选择源文件"
 
 #: src/modules/views/target_file_group.cr:5
 msgid "Target"
-msgstr ""
+msgstr "目标"
 
 #: src/modules/views/target_file_group.cr:23
 #: src/modules/views/target_file_group.cr:62
-#, fuzzy
 msgid "Select target file"
-msgstr "选择源文件"
+msgstr "选择目标文件"
 
 #: src/modules/views/target_file_group.cr:70
 msgid "Edit path"
-msgstr ""
+msgstr "编辑路径"
 
 #: src/modules/views/target_file_group.cr:77
 #: src/modules/functions/dialogs.cr:105
 msgid "_Cancel"
-msgstr ""
+msgstr "取消(_C)"
 
 #: src/modules/views/target_file_group.cr:78
 msgid "_Apply"
-msgstr ""
+msgstr "应用(_A)"
 
 #: src/modules/views/convert_button_group.cr:9
 msgid "Convert"
@@ -133,7 +132,7 @@ msgstr "请选择源文件和输出文件。"
 #: src/modules/views/convert_button_group.cr:109
 #: src/modules/views/convert_button_group.cr:149
 msgid "An error occurred while conversion!"
-msgstr ""
+msgstr "转换过程中发生错误！"
 
 #: src/modules/views/convert_button_group.cr:144
 msgid "Conversion Complete!"
@@ -141,24 +140,23 @@ msgstr "转换完成！"
 
 #: src/modules/functions/dialogs.cr:101
 msgid "File Already Exists"
-msgstr ""
+msgstr "文件已存在"
 
 #: src/modules/functions/dialogs.cr:102
 msgid "The file already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "文件已存在。要覆盖它吗？"
 
 #: src/modules/functions/dialogs.cr:106
 msgid "_Overwrite"
-msgstr ""
+msgstr "覆盖(_O)"
 
 #: src/modules/functions/dialogs.cr:123
-#, fuzzy
 msgid "Converting"
 msgstr "正在转换..."
 
 #: src/modules/functions/dialogs.cr:123
 msgid "Please wait..."
-msgstr ""
+msgstr "请稍候..."
 
 #~ msgid "Settings"
 #~ msgstr "设置"

@@ -26,13 +26,12 @@ msgid "About"
 msgstr "À propos"
 
 #: src/modules/views/conversion_mode_group.cr:12
-#, fuzzy
 msgid "Conversion"
-msgstr "Mode de conversion :"
+msgstr "Conversion"
 
 #: src/modules/views/conversion_mode_group.cr:16
 msgid "Mode"
-msgstr ""
+msgstr "Mode"
 
 #: src/modules/views/conversion_mode_group.cr:20
 msgid "Monochrome"
@@ -43,9 +42,8 @@ msgid "Grayscale"
 msgstr "Niveaux de gris"
 
 #: src/modules/views/conversion_mode_group.cr:22
-#, fuzzy
 msgid "Grayscale Quality"
-msgstr "Niveaux de gris"
+msgstr "Niveaux de gris (qualité)"
 
 #: src/modules/views/conversion_mode_group.cr:23
 msgid "Color"
@@ -53,7 +51,7 @@ msgstr "Couleur"
 
 #: src/modules/views/conversion_mode_group.cr:34
 msgid "Threshold"
-msgstr ""
+msgstr "Seuil"
 
 #: src/modules/views/conversion_mode_group.cr:35
 msgid ""
@@ -62,35 +60,38 @@ msgid ""
 "For grayscaled documents 50-60 is\n"
 "often a good choice."
 msgstr ""
+"Diminuer pour plus de noir.\n"
+"66 convient bien aux documents en couleur.\n"
+"Pour les documents en niveaux de gris, 50-60 est\n"
+"souvent un bon choix."
 
 #: src/modules/views/conversion_mode_group.cr:44
 msgid "Resolution"
-msgstr ""
+msgstr "Résolution"
 
 #: src/modules/views/conversion_mode_group.cr:45
 msgid "Density of the resolution in dpi for your output"
-msgstr ""
+msgstr "Densité de la résolution en ppp pour votre sortie"
 
 #: src/modules/views/conversion_mode_group.cr:54
 msgid "Quality"
-msgstr ""
+msgstr "Qualité"
 
 #: src/modules/views/conversion_mode_group.cr:55
 msgid "Lossy compression quality"
-msgstr ""
+msgstr "Qualité de compression avec pertes"
 
 #: src/modules/views/conversion_mode_group.cr:64
 msgid "Strip metadata"
-msgstr ""
+msgstr "Supprimer les métadonnées"
 
 #: src/modules/views/conversion_mode_group.cr:65
 msgid "Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file"
-msgstr ""
+msgstr "Supprime les métadonnées comme EXIF, IPTC, XMP et les profils ICC du fichier de sortie"
 
 #: src/modules/views/source_file_group.cr:5
-#, fuzzy
 msgid "Source"
-msgstr "Fichier source :"
+msgstr "Source"
 
 #: src/modules/views/source_file_group.cr:16
 #: src/modules/views/source_file_group.cr:55
@@ -99,26 +100,25 @@ msgstr "Sélectionner le fichier source"
 
 #: src/modules/views/target_file_group.cr:5
 msgid "Target"
-msgstr ""
+msgstr "Cible"
 
 #: src/modules/views/target_file_group.cr:23
 #: src/modules/views/target_file_group.cr:62
-#, fuzzy
 msgid "Select target file"
-msgstr "Sélectionner le fichier source"
+msgstr "Sélectionner le fichier cible"
 
 #: src/modules/views/target_file_group.cr:70
 msgid "Edit path"
-msgstr ""
+msgstr "Modifier le chemin"
 
 #: src/modules/views/target_file_group.cr:77
 #: src/modules/functions/dialogs.cr:105
 msgid "_Cancel"
-msgstr ""
+msgstr "_Annuler"
 
 #: src/modules/views/target_file_group.cr:78
 msgid "_Apply"
-msgstr ""
+msgstr "_Appliquer"
 
 #: src/modules/views/convert_button_group.cr:9
 msgid "Convert"
@@ -132,7 +132,7 @@ msgstr "Veuillez sélectionner à la fois les fichiers source et de sortie."
 #: src/modules/views/convert_button_group.cr:109
 #: src/modules/views/convert_button_group.cr:149
 msgid "An error occurred while conversion!"
-msgstr ""
+msgstr "Une erreur est survenue pendant la conversion !"
 
 #: src/modules/views/convert_button_group.cr:144
 msgid "Conversion Complete!"
@@ -140,24 +140,23 @@ msgstr "Conversion terminée !"
 
 #: src/modules/functions/dialogs.cr:101
 msgid "File Already Exists"
-msgstr ""
+msgstr "Le fichier existe déjà"
 
 #: src/modules/functions/dialogs.cr:102
 msgid "The file already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "Le fichier existe déjà. Voulez-vous l'écraser ?"
 
 #: src/modules/functions/dialogs.cr:106
 msgid "_Overwrite"
-msgstr ""
+msgstr "_Écraser"
 
 #: src/modules/functions/dialogs.cr:123
-#, fuzzy
 msgid "Converting"
 msgstr "Conversion en cours..."
 
 #: src/modules/functions/dialogs.cr:123
 msgid "Please wait..."
-msgstr ""
+msgstr "Veuillez patienter..."
 
 #~ msgid "Settings"
 #~ msgstr "Paramètres"

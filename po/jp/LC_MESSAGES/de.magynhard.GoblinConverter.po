@@ -26,13 +26,12 @@ msgid "About"
 msgstr "約"
 
 #: src/modules/views/conversion_mode_group.cr:12
-#, fuzzy
 msgid "Conversion"
-msgstr "変換モード:"
+msgstr "変換"
 
 #: src/modules/views/conversion_mode_group.cr:16
 msgid "Mode"
-msgstr ""
+msgstr "モード"
 
 #: src/modules/views/conversion_mode_group.cr:20
 msgid "Monochrome"
@@ -40,19 +39,19 @@ msgstr "モノクローム"
 
 #: src/modules/views/conversion_mode_group.cr:21
 msgid "Grayscale"
-msgstr ""
+msgstr "グレースケール"
 
 #: src/modules/views/conversion_mode_group.cr:22
 msgid "Grayscale Quality"
-msgstr ""
+msgstr "グレースケール（品質）"
 
 #: src/modules/views/conversion_mode_group.cr:23
 msgid "Color"
-msgstr ""
+msgstr "カラー"
 
 #: src/modules/views/conversion_mode_group.cr:34
 msgid "Threshold"
-msgstr ""
+msgstr "しきい値"
 
 #: src/modules/views/conversion_mode_group.cr:35
 msgid ""
@@ -61,35 +60,38 @@ msgid ""
 "For grayscaled documents 50-60 is\n"
 "often a good choice."
 msgstr ""
+"黒を増やすには下げてください。\n"
+"66 はカラー文書に適しています。\n"
+"グレースケール文書には 50-60 が\n"
+"適していることが多いです。"
 
 #: src/modules/views/conversion_mode_group.cr:44
 msgid "Resolution"
-msgstr ""
+msgstr "解像度"
 
 #: src/modules/views/conversion_mode_group.cr:45
 msgid "Density of the resolution in dpi for your output"
-msgstr ""
+msgstr "出力の解像度密度（dpi）"
 
 #: src/modules/views/conversion_mode_group.cr:54
 msgid "Quality"
-msgstr ""
+msgstr "品質"
 
 #: src/modules/views/conversion_mode_group.cr:55
 msgid "Lossy compression quality"
-msgstr ""
+msgstr "非可逆圧縮の品質"
 
 #: src/modules/views/conversion_mode_group.cr:64
 msgid "Strip metadata"
-msgstr ""
+msgstr "メタデータを削除"
 
 #: src/modules/views/conversion_mode_group.cr:65
 msgid "Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file"
-msgstr ""
+msgstr "出力ファイルから EXIF、IPTC、XMP、ICC プロファイルなどのメタデータを削除します"
 
 #: src/modules/views/source_file_group.cr:5
-#, fuzzy
 msgid "Source"
-msgstr "ソースファイル:"
+msgstr "ソース"
 
 #: src/modules/views/source_file_group.cr:16
 #: src/modules/views/source_file_group.cr:55
@@ -98,26 +100,25 @@ msgstr "ソースファイルを選択"
 
 #: src/modules/views/target_file_group.cr:5
 msgid "Target"
-msgstr ""
+msgstr "出力先"
 
 #: src/modules/views/target_file_group.cr:23
 #: src/modules/views/target_file_group.cr:62
-#, fuzzy
 msgid "Select target file"
-msgstr "ソースファイルを選択"
+msgstr "出力ファイルを選択"
 
 #: src/modules/views/target_file_group.cr:70
 msgid "Edit path"
-msgstr ""
+msgstr "パスを編集"
 
 #: src/modules/views/target_file_group.cr:77
 #: src/modules/functions/dialogs.cr:105
 msgid "_Cancel"
-msgstr ""
+msgstr "キャンセル(_C)"
 
 #: src/modules/views/target_file_group.cr:78
 msgid "_Apply"
-msgstr ""
+msgstr "適用(_A)"
 
 #: src/modules/views/convert_button_group.cr:9
 msgid "Convert"
@@ -131,7 +132,7 @@ msgstr "ソースファイルと出力ファイルの両方を選択してくだ
 #: src/modules/views/convert_button_group.cr:109
 #: src/modules/views/convert_button_group.cr:149
 msgid "An error occurred while conversion!"
-msgstr ""
+msgstr "変換中にエラーが発生しました。"
 
 #: src/modules/views/convert_button_group.cr:144
 msgid "Conversion Complete!"
@@ -139,24 +140,23 @@ msgstr "変換完了!"
 
 #: src/modules/functions/dialogs.cr:101
 msgid "File Already Exists"
-msgstr ""
+msgstr "ファイルは既に存在します"
 
 #: src/modules/functions/dialogs.cr:102
 msgid "The file already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "ファイルは既に存在します。上書きしますか？"
 
 #: src/modules/functions/dialogs.cr:106
 msgid "_Overwrite"
-msgstr ""
+msgstr "上書き(_O)"
 
 #: src/modules/functions/dialogs.cr:123
-#, fuzzy
 msgid "Converting"
 msgstr "変換中..."
 
 #: src/modules/functions/dialogs.cr:123
 msgid "Please wait..."
-msgstr ""
+msgstr "お待ちください..."
 
 #~ msgid "Settings"
 #~ msgstr "設定"

@@ -27,13 +27,12 @@ msgid "About"
 msgstr "О программе"
 
 #: src/modules/views/conversion_mode_group.cr:12
-#, fuzzy
 msgid "Conversion"
-msgstr "Режим конвертации:"
+msgstr "Конвертация"
 
 #: src/modules/views/conversion_mode_group.cr:16
 msgid "Mode"
-msgstr ""
+msgstr "Режим"
 
 #: src/modules/views/conversion_mode_group.cr:20
 msgid "Monochrome"
@@ -41,19 +40,19 @@ msgstr "Монохромный"
 
 #: src/modules/views/conversion_mode_group.cr:21
 msgid "Grayscale"
-msgstr ""
+msgstr "Оттенки серого"
 
 #: src/modules/views/conversion_mode_group.cr:22
 msgid "Grayscale Quality"
-msgstr ""
+msgstr "Оттенки серого (качество)"
 
 #: src/modules/views/conversion_mode_group.cr:23
 msgid "Color"
-msgstr ""
+msgstr "Цветной"
 
 #: src/modules/views/conversion_mode_group.cr:34
 msgid "Threshold"
-msgstr ""
+msgstr "Порог"
 
 #: src/modules/views/conversion_mode_group.cr:35
 msgid ""
@@ -62,35 +61,38 @@ msgid ""
 "For grayscaled documents 50-60 is\n"
 "often a good choice."
 msgstr ""
+"Уменьшите для большего количества чёрного.\n"
+"66 хорошо подходит для цветных документов.\n"
+"Для документов в градациях серого часто\n"
+"подходит значение 50-60."
 
 #: src/modules/views/conversion_mode_group.cr:44
 msgid "Resolution"
-msgstr ""
+msgstr "Разрешение"
 
 #: src/modules/views/conversion_mode_group.cr:45
 msgid "Density of the resolution in dpi for your output"
-msgstr ""
+msgstr "Плотность разрешения в dpi для выходного файла"
 
 #: src/modules/views/conversion_mode_group.cr:54
 msgid "Quality"
-msgstr ""
+msgstr "Качество"
 
 #: src/modules/views/conversion_mode_group.cr:55
 msgid "Lossy compression quality"
-msgstr ""
+msgstr "Качество сжатия с потерями"
 
 #: src/modules/views/conversion_mode_group.cr:64
 msgid "Strip metadata"
-msgstr ""
+msgstr "Удалять метаданные"
 
 #: src/modules/views/conversion_mode_group.cr:65
 msgid "Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file"
-msgstr ""
+msgstr "Удаляет метаданные, такие как EXIF, IPTC, XMP и ICC-профили, из выходного файла"
 
 #: src/modules/views/source_file_group.cr:5
-#, fuzzy
 msgid "Source"
-msgstr "Исходный файл:"
+msgstr "Источник"
 
 #: src/modules/views/source_file_group.cr:16
 #: src/modules/views/source_file_group.cr:55
@@ -99,26 +101,25 @@ msgstr "Выберите исходный файл"
 
 #: src/modules/views/target_file_group.cr:5
 msgid "Target"
-msgstr ""
+msgstr "Назначение"
 
 #: src/modules/views/target_file_group.cr:23
 #: src/modules/views/target_file_group.cr:62
-#, fuzzy
 msgid "Select target file"
-msgstr "Выберите исходный файл"
+msgstr "Выберите выходной файл"
 
 #: src/modules/views/target_file_group.cr:70
 msgid "Edit path"
-msgstr ""
+msgstr "Изменить путь"
 
 #: src/modules/views/target_file_group.cr:77
 #: src/modules/functions/dialogs.cr:105
 msgid "_Cancel"
-msgstr ""
+msgstr "_Отмена"
 
 #: src/modules/views/target_file_group.cr:78
 msgid "_Apply"
-msgstr ""
+msgstr "_Применить"
 
 #: src/modules/views/convert_button_group.cr:9
 msgid "Convert"
@@ -132,7 +133,7 @@ msgstr "Пожалуйста, выберите оба файла: исходны
 #: src/modules/views/convert_button_group.cr:109
 #: src/modules/views/convert_button_group.cr:149
 msgid "An error occurred while conversion!"
-msgstr ""
+msgstr "Во время конвертации произошла ошибка!"
 
 #: src/modules/views/convert_button_group.cr:144
 msgid "Conversion Complete!"
@@ -140,24 +141,23 @@ msgstr "Конвертация завершена!"
 
 #: src/modules/functions/dialogs.cr:101
 msgid "File Already Exists"
-msgstr ""
+msgstr "Файл уже существует"
 
 #: src/modules/functions/dialogs.cr:102
 msgid "The file already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "Файл уже существует. Перезаписать его?"
 
 #: src/modules/functions/dialogs.cr:106
 msgid "_Overwrite"
-msgstr ""
+msgstr "_Перезаписать"
 
 #: src/modules/functions/dialogs.cr:123
-#, fuzzy
 msgid "Converting"
 msgstr "Конвертация..."
 
 #: src/modules/functions/dialogs.cr:123
 msgid "Please wait..."
-msgstr ""
+msgstr "Пожалуйста, подождите..."
 
 #~ msgid "Settings"
 #~ msgstr "Настройки"

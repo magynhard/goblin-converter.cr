@@ -26,7 +26,6 @@ msgid "About"
 msgstr "Acerca de"
 
 #: src/modules/views/conversion_mode_group.cr:12
-#, fuzzy
 msgid "Conversion"
 msgstr "Conversión"
 
@@ -43,9 +42,8 @@ msgid "Grayscale"
 msgstr "Escala de grises"
 
 #: src/modules/views/conversion_mode_group.cr:22
-#, fuzzy
 msgid "Grayscale Quality"
-msgstr "Escala de grises"
+msgstr "Escala de grises (calidad)"
 
 #: src/modules/views/conversion_mode_group.cr:23
 msgid "Color"
@@ -85,16 +83,15 @@ msgstr "Calidad de compresión con pérdida"
 
 #: src/modules/views/conversion_mode_group.cr:64
 msgid "Strip metadata"
-msgstr ""
+msgstr "Eliminar metadatos"
 
 #: src/modules/views/conversion_mode_group.cr:65
 msgid "Remove metadata like EXIF, IPTC, XMP, and ICC profiles from output file"
-msgstr ""
+msgstr "Elimina metadatos como EXIF, IPTC, XMP y perfiles ICC del archivo de salida"
 
 #: src/modules/views/source_file_group.cr:5
-#, fuzzy
 msgid "Source"
-msgstr "Archivo de origen"
+msgstr "Origen"
 
 #: src/modules/views/source_file_group.cr:16
 #: src/modules/views/source_file_group.cr:55
@@ -107,22 +104,21 @@ msgstr "Archivo de destino"
 
 #: src/modules/views/target_file_group.cr:23
 #: src/modules/views/target_file_group.cr:62
-#, fuzzy
 msgid "Select target file"
-msgstr "Seleccionar archivo de origen"
+msgstr "Seleccionar archivo de destino"
 
 #: src/modules/views/target_file_group.cr:70
 msgid "Edit path"
-msgstr ""
+msgstr "Editar ruta"
 
 #: src/modules/views/target_file_group.cr:77
 #: src/modules/functions/dialogs.cr:105
 msgid "_Cancel"
-msgstr ""
+msgstr "_Cancelar"
 
 #: src/modules/views/target_file_group.cr:78
 msgid "_Apply"
-msgstr ""
+msgstr "_Aplicar"
 
 #: src/modules/views/convert_button_group.cr:9
 msgid "Convert"
@@ -136,7 +132,7 @@ msgstr "Por favor, seleccione tanto el archivo de origen como el de salida."
 #: src/modules/views/convert_button_group.cr:109
 #: src/modules/views/convert_button_group.cr:149
 msgid "An error occurred while conversion!"
-msgstr ""
+msgstr "Se ha producido un error durante la conversión."
 
 #: src/modules/views/convert_button_group.cr:144
 msgid "Conversion Complete!"
@@ -144,24 +140,23 @@ msgstr "¡Conversión completa!"
 
 #: src/modules/functions/dialogs.cr:101
 msgid "File Already Exists"
-msgstr ""
+msgstr "El archivo ya existe"
 
 #: src/modules/functions/dialogs.cr:102
 msgid "The file already exists. Do you want to overwrite it?"
-msgstr ""
+msgstr "El archivo ya existe. ¿Desea sobrescribirlo?"
 
 #: src/modules/functions/dialogs.cr:106
 msgid "_Overwrite"
-msgstr ""
+msgstr "_Sobrescribir"
 
 #: src/modules/functions/dialogs.cr:123
-#, fuzzy
 msgid "Converting"
 msgstr "Convirtiendo..."
 
 #: src/modules/functions/dialogs.cr:123
 msgid "Please wait..."
-msgstr ""
+msgstr "Espere, por favor..."
 
 #~ msgid "Settings"
 #~ msgstr "Configuraciones"
